@@ -1,0 +1,388 @@
+[data-theme="dark"] .document-title input:focus {
+  background: #30312c;
+  color: #efeee8;
+  box-shadow: 0 0 0 1px #5a5b54;
+}
+[data-theme="dark"] .document-title input::selection {
+  background: #e55f3670;
+  color: #fffefa;
+}
+[data-theme="dark"] .coach-window-actions button:hover {
+  background: #33342f;
+  color: #efeee8;
+}
+[data-theme="dark"] .coach-history {
+  background: #20211e;
+  border-color: #42423d;
+}
+[data-theme="dark"] .coach-thread {
+  color: #c1bfb6;
+}
+[data-theme="dark"] .coach-thread.active,
+[data-theme="dark"] .coach-thread:hover {
+  background: #30312c;
+  color: #efeee8;
+}
+[data-theme="dark"] .project-menu {
+  background: #272824;
+  border-color: #42423d;
+  box-shadow: 0 12px 32px #0006;
+}
+[data-theme="dark"] .project-menu button:hover,
+[data-theme="dark"] .project-menu button:focus-visible {
+  background: #33342f;
+}
+[data-theme="dark"] .coach-thread small {
+  color: #aaa89f;
+}
+[data-theme="dark"] .lessons-page.unified-lesson-overlay .lesson-detail {
+  background: #272824;
+  border-color: #42423d;
+  box-shadow: -20px 0 70px #0008;
+}
+[data-theme="dark"] .lesson-picker {
+  background: #20211e;
+  border-color: #42423d;
+}
+[data-theme="dark"] .lesson-picker button {
+  background: #30312c;
+  border-color: #494a44;
+  color: #efeee8;
+}
+[data-theme="dark"] .lesson-picker button small,
+[data-theme="dark"] .lesson-picker-empty {
+  color: #aaa89f;
+}
+/* Dark theme */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #efeee8;
+  --muted: #aaa89f;
+  --line: #42423d;
+  --paper: #232420;
+  --shell: #1b1c19;
+}
+[data-theme="dark"] body,
+[data-theme="dark"] #app {
+  background: #1b1c19;
+  color: #efeee8;
+}
+[data-theme="dark"] .desktop-titlebar {
+  background: #272824;
+  border-color: #464740;
+  color: #d0cec5;
+}
+[data-theme="dark"] .desktop-titlebar-mark {
+  background: #efeee8;
+}
+[data-theme="dark"] .desktop-titlebar-mark span {
+  background: #252621;
+}
+[data-theme="dark"] .desktop-window-button {
+  color: #b8b6ae;
+}
+[data-theme="dark"] .desktop-window-button:hover {
+  background: #353630;
+  color: #fff;
+}
+[data-theme="dark"] .desktop-window-button.close:hover {
+  background: #d84a3d;
+  color: #fff;
+}
+[data-theme="dark"] .topbar,
+[data-theme="dark"] .toolbar,
+[data-theme="dark"] .panel-content,
+[data-theme="dark"] .sessions-panel,
+[data-theme="dark"] .lessons-sidebar {
+  background: #20211e;
+}
+[data-theme="dark"] .workspace,
+[data-theme="dark"] .paper-wrap,
+[data-theme="dark"] .lessons-page,
+[data-theme="dark"] .lessons-main {
+  background: #191a17;
+}
+[data-theme="dark"] .paper {
+  background: var(--paper);
+  border-color: #393a35;
+  box-shadow: 0 18px 55px #0005;
+}
+[data-theme="dark"] .page-tab {
+  background: #292a26;
+  border-color: #44453f;
+  color: #aaa89f;
+}
+[data-theme="dark"] .page-tab.active {
+  background: var(--paper);
+  color: var(--ink);
+}
+[data-theme="dark"] .page-tab-close:hover {
+  background: #3b3c36;
+  color: #efeee8;
+}
+[data-theme="dark"] .add-page-tab {
+  background: #292a26;
+  border-color: #44453f;
+  color: #d0cec5;
+}
+[data-theme="dark"] .paper.grid {
+  background-color: var(--paper);
+  background-image: radial-gradient(#464740 1px, transparent 1px);
+}
+[data-theme="dark"] #canvas {
+  filter: invert(1) hue-rotate(180deg);
+}
+[data-theme="dark"] .color-dot.adaptive-ink,
+[data-theme="dark"] .color-popover [data-adaptive-ink] {
+  background: #efeee8 !important;
+}
+[data-theme="dark"] .brand-mark,
+[data-theme="dark"] .primary-button,
+[data-theme="dark"] .create-lesson,
+[data-theme="dark"] .generate-lesson,
+[data-theme="dark"] .complete-lesson,
+[data-theme="dark"] .send-page,
+[data-theme="dark"] .expression-wrap button,
+[data-theme="dark"] .new-session-row > span,
+[data-theme="dark"] .lesson-empty > div,
+[data-theme="dark"] .modal-spark,
+[data-theme="dark"] .coach-avatar {
+  background: #efeee8;
+  color: #252621;
+}
+[data-theme="dark"] .tool.active {
+  background: #efeee8;
+  color: #252621;
+}
+[data-theme="dark"] .brand-mark span {
+  background: #252621;
+}
+[data-theme="dark"] .primary-button,
+[data-theme="dark"] .create-lesson,
+[data-theme="dark"] .generate-lesson,
+[data-theme="dark"] .complete-lesson,
+[data-theme="dark"] .send-page,
+[data-theme="dark"] .expression-wrap button {
+  color: #252621;
+}
+[data-theme="dark"] .coach-panel,
+[data-theme="dark"] .lesson-coach-block,
+[data-theme="dark"] .appearance-popover,
+[data-theme="dark"] .lesson-modal-card,
+[data-theme="dark"] .lesson-detail article,
+[data-theme="dark"] .lesson-card,
+[data-theme="dark"] .lesson-progress-card,
+[data-theme="dark"] .learning-streak,
+[data-theme="dark"] .panel-tab,
+[data-theme="dark"] .result-box,
+[data-theme="dark"] .coach-form {
+  background: #272824;
+  border-color: #42423d;
+}
+[data-theme="dark"] .lesson-detail {
+  background: #1b1c19;
+}
+[data-theme="dark"] .lesson-practice-pane {
+  background: #191a17;
+  border-color: #3f403a;
+}
+[data-theme="dark"] .lesson-practice-main {
+  background: #1b1c19;
+}
+[data-theme="dark"] .lesson-reading-pane {
+  background: #20211e;
+}
+[data-theme="dark"] .lesson-layout-divider {
+  background: linear-gradient(to right, transparent 2px, #55584f 2px, #55584f 3px, transparent 3px);
+}
+[data-theme="dark"] .lesson-layout-divider::after {
+  background: #b0aa9d;
+}
+[data-theme="dark"] .lesson-layout-tab {
+  border-color: #55564f;
+  background-color: rgba(48, 49, 44, 0.96);
+  background-image: radial-gradient(circle, #aaa89f 1px, transparent 1.25px);
+  box-shadow: 0 3px 10px #0004;
+}
+[data-theme="dark"] .lesson-layout-tab:hover,
+[data-theme="dark"] .lesson-layout-tab:focus,
+[data-theme="dark"] .lesson-layout-tab.dragging {
+  border-color: #f3a05b;
+  background-image: radial-gradient(circle, #f3a05b 1px, transparent 1.25px);
+}
+[data-theme="dark"] .lesson-practice-paper {
+  background: #232420;
+  border-color: #3d3e38;
+  box-shadow: 0 15px 40px #0005;
+}
+[data-theme="dark"] .lesson-practice-canvas {
+  filter: invert(1) hue-rotate(180deg);
+}
+[data-theme="dark"] .lesson-practice-tools {
+  background: #272824;
+  border-color: #42423d;
+}
+[data-theme="dark"] .lesson-practice-tools button {
+  color: #e5e3dc;
+}
+[data-theme="dark"] .lesson-practice-tools button:hover {
+  background: #33342f;
+}
+[data-theme="dark"] .lesson-practice-tools button.active {
+  background: #efeee8;
+  border-color: #efeee8;
+  color: #24251f;
+}
+[data-theme="dark"] .lesson-coach-conversation {
+  background: #20211e;
+  border-color: #41423c;
+}
+[data-theme="dark"] .lesson-coach-form {
+  background: #30312c;
+  border-color: #494a44;
+}
+[data-theme="dark"] .lesson-coach-form textarea {
+  color: #efeee8;
+}
+[data-theme="dark"] .lesson-coach-form > button {
+  background: #efeee8;
+  color: #252621;
+}
+[data-theme="dark"] .scientific-keypad button,
+[data-theme="dark"] #pin-result {
+  background: #30312c;
+  border-color: #55564f;
+  color: #efeee8;
+}
+[data-theme="dark"] .scientific-keypad button:hover,
+[data-theme="dark"] #pin-result:hover:not(:disabled) {
+  background: #3b3c36;
+  border-color: #6a6b63;
+}
+[data-theme="dark"] .scientific-keypad .mode-key {
+  color: #f3a05b;
+}
+[data-theme="dark"] .scientific-keypad .utility-key {
+  color: #ffb3a8;
+}
+[data-theme="dark"] .scientific-keypad .equals-key {
+  background: #efeee8;
+  border-color: #efeee8;
+  color: #252621;
+}
+[data-theme="dark"] .scientific-keypad .equals-key:hover {
+  background: #d8d6ce;
+  border-color: #d8d6ce;
+}
+[data-theme="dark"] .expression-wrap,
+[data-theme="dark"] .result-box button,
+[data-theme="dark"] .quick-math button,
+[data-theme="dark"] .coach-suggestions button,
+[data-theme="dark"] .lesson-empty button,
+[data-theme="dark"] .lesson-modal-card textarea,
+[data-theme="dark"] .lesson-modal-card select,
+[data-theme="dark"] .session-thumb,
+[data-theme="dark"] .theme-options button,
+[data-theme="dark"] .font-scale-control button {
+  background: #30312c;
+  border-color: #494a44;
+  color: #e5e3dc;
+}
+[data-theme="dark"] .document-title input,
+[data-theme="dark"] .expression-wrap input,
+[data-theme="dark"] .coach-form textarea,
+[data-theme="dark"] .lesson-modal-card textarea,
+[data-theme="dark"] .lesson-modal-card select {
+  color: #efeee8;
+}
+[data-theme="dark"] .lesson-filter.active,
+[data-theme="dark"] .session-row.active,
+[data-theme="dark"] .coach-message.system,
+[data-theme="dark"] .coach-message.assistant,
+[data-theme="dark"] .example-box,
+[data-theme="dark"] .practice-box {
+  background: #30312c;
+}
+[data-theme="dark"] .math-card {
+  background: #373427;
+  border-color: #5c5538;
+}
+[data-theme="dark"] .math-card .card-expression {
+  color: #b8ad7c;
+}
+[data-theme="dark"] .color-popover,
+[data-theme="dark"] .size-popover {
+  background: #292a26;
+  border-color: #44453f;
+}
+[data-theme="dark"] .icon-button:hover:not(:disabled),
+[data-theme="dark"] .text-button:hover,
+[data-theme="dark"] .appearance-button:hover,
+[data-theme="dark"] .tool:hover {
+  background: #33342f;
+}
+[data-theme="dark"] .toast {
+  background: #efeee8;
+  color: #24251f;
+}
+[data-theme="dark"] kbd {
+  background: #30312c;
+  border-color: #4b4c45;
+  color: #d0cec5;
+  box-shadow: 0 1px 0 #42433d inset;
+}
+[data-theme="dark"] .canvas-actions button,
+[data-theme="dark"] .empty-state p,
+[data-theme="dark"] .panel-intro,
+[data-theme="dark"] .history-row span,
+[data-theme="dark"] .sessions-panel > p,
+[data-theme="dark"] .shared-page-note,
+[data-theme="dark"] .coach-suggestions button,
+[data-theme="dark"] .lessons-header p,
+[data-theme="dark"] .lesson-card p,
+[data-theme="dark"] .lesson-block p,
+[data-theme="dark"] .lesson-modal-card > p,
+[data-theme="dark"] .lesson-modal-card label {
+  color: #b2b0a7;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder {
+  color: #77776f;
+}
+[data-theme="dark"] .lesson-modal-error {
+  background: #3a2724;
+  border-color: #9d5a4d;
+  color: #ffd8d1;
+}
+[data-theme="dark"] .lesson-modal-error small {
+  color: #e6aaa0;
+}
+[data-theme="dark"] .lesson-graph-block {
+  background: #20211e;
+  border-color: #42423d;
+}
+[data-theme="dark"] .lesson-graph-block p,
+[data-theme="dark"] .lesson-graph-block li small,
+[data-theme="dark"] .lesson-graph-edges {
+  color: #b2b0a7;
+}
+[data-theme="dark"] .lesson-graph-block li {
+  background: #30312c;
+  border-left-color: #55564f;
+}
+[data-theme="dark"] .lesson-graph-block li.active {
+  border-left-color: var(--orange);
+}
+[data-theme="dark"] .lesson-picker-delete {
+  background: #30312c;
+  border-color: #494a44;
+  color: #ffb3a8;
+}
+[data-theme="dark"] .lesson-picker-delete:hover {
+  background: #3a2724;
+  border-color: #9d5a4d;
+}
+[data-theme="dark"] .generate-next-lesson {
+  background: #efeee8;
+  color: #252621;
+}

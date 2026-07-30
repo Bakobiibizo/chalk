@@ -1,0 +1,51 @@
+.math-cards {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.math-card {
+  position: absolute;
+  min-width: 150px;
+  background: #fff9d9;
+  border: 1px solid #e5dca7;
+  box-shadow: 0 6px 18px #3b35221a;
+  padding: 13px 15px 12px;
+  border-radius: 3px;
+  transform: rotate(-1deg);
+  pointer-events: auto;
+  cursor: grab;
+  user-select: none;
+}
+
+.math-card:active {
+  cursor: grabbing;
+}
+
+.math-card .card-expression {
+  display: block;
+  color: #837c60;
+  font-size: calc(10px * var(--font-scale));
+  margin-bottom: 2px;
+}
+
+.math-card .card-result {
+  font-family: Newsreader, Georgia, serif;
+  font-size: calc(24px * var(--font-scale));
+}
+
+.math-card .delete-card {
+  opacity: 0;
+  position: absolute;
+  right: 5px;
+  top: 4px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  color: #8c856b;
+}
+
+.math-card:hover .delete-card {
+  opacity: 1;
+}

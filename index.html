@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f1e9" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' ws: wss:; object-src 'none'; base-uri 'self'; form-action 'self'"
+    />
+    <title>Chalk — Think with your hands</title>
+    <script>
+      try {
+        const appearance = JSON.parse(localStorage.getItem('chalk-appearance') || '{}');
+        const theme = appearance.theme || 'system';
+        document.documentElement.dataset.theme =
+          theme === 'system'
+            ? matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+            : theme;
+        document.documentElement.style.setProperty(
+          '--font-scale',
+          (appearance.fontScale || 100) / 100,
+        );
+      } catch {}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="desktop-titlebar" id="desktop-titlebar" aria-label="Window controls">
+      <div class="desktop-titlebar-drag" id="desktop-titlebar-drag">
+        <div class="desktop-titlebar-mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="desktop-titlebar-name">Chalk</span>
+      </div>
+      <div class="desktop-window-controls">
+        <button
+          class="desktop-window-button minimize"
+          id="window-minimize"
+          aria-label="Minimize"
+          title="Minimize"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5h10" /></svg>
+        </button>
+        <button
+          class="desktop-window-button maximize"
+          id="window-maximize"
+          aria-label="Maximize"
+          title="Maximize"
+        >
+          <svg class="maximize-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <rect x="3.5" y="3.5" width="9" height="9" rx=".5" />
+          </svg>
+          <svg class="restore-icon" viewBox="0 0 16 16" aria-hidden="true">
+            <path d="M5.5 5.5V3.5h7v7h-2M3.5 5.5h7v7h-7z" />
+          </svg>
+        </button>
+        <button
+          class="desktop-window-button close"
+          id="window-close"
+          aria-label="Close"
+          title="Close"
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4 4 8 8m0-8-8 8" /></svg>
+        </button>
+      </div>
+    </header>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand-area">
+          <div class="brand" aria-label="Chalk home">
+            <div class="brand-mark"><span></span><span></span><span></span></div>
+            <span>chalk</span>
+          </div>
+          <span class="brand-divider"></span>
+          <div class="document-title">
+            <input id="page-title" value="Untitled project" aria-label="Project title" />
+            <span class="save-state"><i></i> Saved locally</span>
+          </div>
+        </div>
+
+        <nav class="app-nav" aria-label="Application pages">
+          <button class="active" data-page="sketch">Sketch</button>
+          <button data-page="lessons">Lessons</button>
+        </nav>
+
+        <div class="top-actions">
+          <button class="icon-button" id="undo" title="Undo (Ctrl+Z)" disabled>
+            <svg viewBox="0 0 24 24"><path d="M9 7 4 12l5 5M5 12h8a6 6 0 0 1 6 6" /></svg>
+          </button>
+          <button class="icon-button" id="redo" title="Redo (Ctrl+Shift+Z)" disabled>
+            <svg viewBox="0 0 24 24"><path d="m15 7 5 5-5 5m4-5h-8a6 6 0 0 0-6 6" /></svg>
+          </button>
+          <span class="divider"></span>
+          <button
+            class="appearance-button"
+            id="appearance-button"
+            aria-label="Appearance settings"
+            title="Appearance"
+          >
+            <span>Aa</span>
+          </button>
+          <button class="codex-status" id="codex-status" title="Codex app service status">
+            <i></i><span>Codex</span>
+          </button>
+          <div class="project-menu-wrap sketch-action">
+            <button
+              class="text-button project-menu-button"
+              id="project-menu-button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="project-menu"
+            >
+              Project <span aria-hidden="true">⌄</span>
+            </button>
+            <div class="project-menu" id="project-menu" role="menu" hidden>
+              <button id="new-page" role="menuitem">New</button>
+              <button id="sessions-button" role="menuitem">Load</button>
+              <button id="import-project" role="menuitem">Import</button>
+              <button id="export-project" role="menuitem">Export</button>
+            </div>
+          </div>
+          <input
+            id="project-import-file"
+            type="file"
+            accept="application/json,.json,.chalk-project"
+            hidden
+          />
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="app-view sketch-view active" id="sketch-view">
+          <aside class="toolbar" aria-label="Drawing tools">
+            <div class="tool-group">
+              <button class="tool active" data-tool="pen" aria-label="Pen" title="Pen (P)">
+                <svg viewBox="0 0 24 24">
+                  <path d="m5 19 2.5-6.5L17 3l4 4-9.5 9.5L5 19Z" />
+                  <path d="m14.5 5.5 4 4M7.5 12.5l4 4" />
+                </svg>
+              </button>
+              <button class="tool" data-tool="eraser" aria-label="Eraser" title="Eraser (E)">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="m4.5 14.5 8.8-10a2 2 0 0 1 2.9-.1l3.3 3.1a2 2 0 0 1 .1 2.9L11.9 19H8l-3.4-2a1.8 1.8 0 0 1-.1-2.5Z"
+                  />
+                  <path d="m10 9 6 5M12 19h8" />
+                </svg>
+              </button>
+              <button
+                class="tool"
+                data-tool="select"
+                aria-label="Select and move"
+                title="Select and move (S)"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 3h4M3 5v4M19 3h-4M21 5v4M5 21h4M3 19v-4M19 21h-4M21 19v-4" />
+                  <path d="m9 8 7 4-4 1-2 4-1-9Z" />
+                </svg>
+              </button>
+            </div>
+            <div class="tool-group">
+              <button class="tool" id="color-tool" aria-label="Ink color" title="Ink color">
+                <span class="color-dot adaptive-ink"></span>
+              </button>
+              <button class="tool size-tool" id="size-tool" aria-label="Pen size" title="Pen size">
+                <span></span>
+              </button>
+            </div>
+            <div class="tool-group lower">
+              <button class="tool" id="export" aria-label="Snapshot" title="Snapshot">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M4 7h3l1.5-2h7L17 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"
+                  />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
+              </button>
+              <button
+                class="tool"
+                id="panel-toggle"
+                aria-label="Open scientific calculator"
+                title="Scientific calculator"
+              >
+                <svg viewBox="0 0 24 24">
+                  <rect x="5" y="3" width="14" height="18" rx="2" />
+                  <path d="M8 7h8v3H8zM8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                </svg>
+              </button>
+              <button
+                class="tool"
+                id="interpret-page"
+                aria-label="Interpret page"
+                title="Interpret page"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 4h10l4 4v12H5z" />
+                  <path d="M15 4v4h4M8 12h8M8 16h6" />
+                  <path d="m3 7 .7 1.3L5 9l-1.3.7L3 11l-.7-1.3L1 9l1.3-.7L3 7Z" />
+                </svg>
+              </button>
+              <button
+                class="tool"
+                id="focus-trigger"
+                title="Focus canvas (F)"
+                aria-label="Focus canvas"
+              >
+                <svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /></svg>
+              </button>
+              <button
+                class="tool"
+                id="clear-page-tool"
+                aria-label="Clear page"
+                title="Clear current page"
+              >
+                <svg viewBox="0 0 24 24">
+                  <path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13M10 11v5M14 11v5" />
+                </svg>
+              </button>
+              <button class="tool" id="grid-tool" aria-label="Toggle grid" title="Toggle dot grid">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M5 5h.01M12 5h.01M19 5h.01M5 12h.01M12 12h.01M19 12h.01M5 19h.01M12 19h.01M19 19h.01"
+                  />
+                </svg>
+              </button>
+            </div>
+          </aside>
+
+          <section class="paper-wrap">
+            <div class="page-tabs" id="page-tabs" aria-label="Project pages"></div>
+            <div class="paper" id="paper">
+              <canvas id="canvas" aria-label="Drawing canvas"></canvas>
+              <div class="selection-box" id="selection-box"></div>
+              <div id="math-cards" class="math-cards"></div>
+              <div class="empty-state" id="empty-state">
+                <div class="empty-scribble"><span></span><span></span></div>
+                <p>Put pen to paper.</p>
+                <small>Your Wacom pen pressure works here.</small>
+              </div>
+            </div>
+
+            <div class="canvas-status">
+              <span id="input-status"><i></i> Ready for pen</span>
+              <span class="canvas-actions"
+                ><button id="focus-canvas">
+                  <svg viewBox="0 0 24 24"><path d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" /></svg>
+                  Focus canvas <kbd>F</kbd></button
+                ><button id="ask-codex"><span>✦</span> Ask Codex about this page</button
+                ><span class="zoom">100%</span></span
+              >
+            </div>
+          </section>
+
+          <section
+            class="math-panel"
+            id="math-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="calculator-title"
+            aria-hidden="true"
+          >
+            <div class="calculator-scrim" id="calculator-scrim"></div>
+            <div class="panel-content" role="document">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow">SCIENTIFIC CALCULATOR</span>
+                  <h2 id="calculator-title">Do the math.</h2>
+                </div>
+                <button class="close-panel" id="close-panel" aria-label="Close calculator">
+                  ×
+                </button>
+              </div>
+              <p class="panel-intro">
+                Calculate with scientific functions and add the result to the current page.
+              </p>
+              <form id="math-form">
+                <div class="expression-label">
+                  <label for="expression">Expression</label>
+                </div>
+                <div class="expression-wrap">
+                  <input
+                    id="expression"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="e.g. sin(pi / 4) + sqrt(16)"
+                  />
+                  <button type="submit" aria-label="Calculate">
+                    <svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6" /></svg>
+                  </button>
+                </div>
+              </form>
+              <div class="scientific-keypad" aria-label="Scientific calculator keypad">
+                <button type="button" class="mode-key" id="angle-mode" aria-label="Angle mode: RAD">
+                  RAD
+                </button>
+                <button type="button" data-insert="(">(</button>
+                <button type="button" data-insert=")">)</button>
+                <button type="button" class="utility-key" data-calculator-action="clear">AC</button>
+                <button
+                  type="button"
+                  class="utility-key"
+                  data-calculator-action="backspace"
+                  aria-label="Backspace"
+                >
+                  ⌫
+                </button>
+                <button type="button" data-insert="sin()">sin</button>
+                <button type="button" data-insert="cos()">cos</button>
+                <button type="button" data-insert="tan()">tan</button>
+                <button type="button" data-insert="log()">log</button>
+                <button type="button" data-insert="ln()">ln</button>
+                <button type="button" data-insert="7">7</button>
+                <button type="button" data-insert="8">8</button>
+                <button type="button" data-insert="9">9</button>
+                <button type="button" data-insert="/">÷</button>
+                <button type="button" data-insert="sqrt()">√</button>
+                <button type="button" data-insert="4">4</button>
+                <button type="button" data-insert="5">5</button>
+                <button type="button" data-insert="6">6</button>
+                <button type="button" data-insert="*">×</button>
+                <button type="button" data-insert="^">xʸ</button>
+                <button type="button" data-insert="1">1</button>
+                <button type="button" data-insert="2">2</button>
+                <button type="button" data-insert="3">3</button>
+                <button type="button" data-insert="-">−</button>
+                <button type="button" data-insert="pi">π</button>
+                <button type="button" data-insert="0">0</button>
+                <button type="button" data-insert=".">.</button>
+                <button type="button" data-insert="e">e</button>
+                <button type="button" data-insert="+">+</button>
+                <button type="submit" form="math-form" class="equals-key">=</button>
+              </div>
+              <div class="result-box" id="result-box">
+                <span class="result-label">RESULT</span>
+                <div class="result-value" id="result-value">—</div>
+                <button id="pin-result" disabled>
+                  <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+                  Add to page
+                </button>
+              </div>
+              <div class="history">
+                <div class="history-head">
+                  <span>RECENT</span><button id="clear-history">Clear</button>
+                </div>
+                <div id="history-list" class="history-list"><p>No calculations yet.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="coach-panel" id="coach-panel" aria-label="Codex learning coach">
+            <div class="coach-head" title="Drag to move · resize from the lower-right corner">
+              <div class="coach-avatar">✦</div>
+              <div>
+                <span>CODEX LEARNING COACH</span>
+                <h2>Let’s work through it.</h2>
+              </div>
+              <div class="coach-window-actions">
+                <button id="toggle-coach-history" aria-label="Chat history" title="Chat history">
+                  ☰
+                </button>
+                <button id="new-coach-thread" aria-label="New chat" title="New chat">＋</button>
+                <button id="popout-coach" aria-label="Pop out chat" title="Pop out chat">↗</button>
+                <button id="close-coach" aria-label="Close coach">×</button>
+              </div>
+            </div>
+            <p class="shared-page-note">The current page is sent along with the lesson plan.</p>
+            <div class="coach-body">
+              <aside class="coach-history" aria-label="Chat history">
+                <span>HISTORY</span>
+                <div id="coach-history-list"></div>
+              </aside>
+              <div class="coach-conversation" id="coach-conversation">
+                <div class="coach-message system">
+                  I can see the page you’re working on. What would you like help with?
+                </div>
+              </div>
+            </div>
+            <form class="coach-form" id="coach-form">
+              <textarea
+                id="coach-prompt"
+                rows="2"
+                placeholder="Check my work, give me a hint…"
+              ></textarea>
+              <div class="coach-suggestions">
+                <button
+                  type="button"
+                  data-coach-prompt="Check my work and point out the first mistake, if there is one."
+                >
+                  Check my work
+                </button>
+                <button
+                  type="button"
+                  data-coach-prompt="Give me one small hint without revealing the final answer."
+                >
+                  Give me a hint
+                </button>
+              </div>
+              <button class="send-page" type="submit">Send</button>
+            </form>
+          </section>
+        </section>
+
+        <section class="app-view lessons-page" id="lessons-view">
+          <div class="lessons-sidebar">
+            <div class="lessons-side-head">
+              <span>MY LEARNING</span><button id="add-lesson" aria-label="Add lesson">+</button>
+            </div>
+            <button class="lesson-filter active">
+              <span class="filter-icon">⌂</span>All lessons <b id="lesson-count">0</b>
+            </button>
+            <div class="topic-label">TOPICS</div>
+            <div id="topic-list" class="topic-list"></div>
+            <div class="learning-streak">
+              <span>THIS WEEK</span>
+              <div>
+                <b id="completed-count">0</b><small>lessons<br />completed</small>
+              </div>
+            </div>
+          </div>
+          <div class="lessons-main">
+            <div class="lessons-header">
+              <div>
+                <span class="eyebrow">YOUR CURRICULUM</span>
+                <h1>Lessons</h1>
+                <p>Build a path, practice on paper, and learn with Codex.</p>
+              </div>
+              <div class="lesson-header-actions">
+                <button class="create-lesson" id="import-lessons">Import</button
+                ><button class="create-lesson" id="export-lessons">Export</button
+                ><button class="create-lesson" id="create-lesson">
+                  <span>✦</span> Create with Codex</button
+                ><input
+                  id="lesson-import-file"
+                  type="file"
+                  accept="application/json,.json"
+                  hidden
+                />
+              </div>
+            </div>
+            <div class="lesson-progress-card">
+              <div class="progress-copy">
+                <span>WEEKLY PROGRESS</span><b id="progress-number">0 of 0 lessons</b>
+              </div>
+              <div class="progress-track"><i id="progress-fill"></i></div>
+              <div class="progress-days">
+                <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span
+                ><span>S</span>
+              </div>
+            </div>
+            <div class="lesson-section-head">
+              <h2>Continue learning</h2>
+              <span id="lesson-sort">Newest first</span>
+            </div>
+            <div class="lesson-grid" id="lesson-grid"></div>
+            <div class="lesson-empty" id="lesson-empty">
+              <div>✦</div>
+              <h3>Start your first lesson</h3>
+              <p>Tell Codex what you want to learn and it will build a focused lesson for you.</p>
+              <button id="empty-create">Create a lesson</button>
+            </div>
+          </div>
+
+          <section class="lesson-detail" id="lesson-detail">
+            <div id="lesson-detail-content"></div>
+          </section>
+
+          <div class="lesson-modal" id="lesson-modal">
+            <div class="lesson-modal-card">
+              <button class="modal-close" id="close-lesson-modal">×</button>
+              <div class="modal-spark">✦</div>
+              <span class="eyebrow">CREATE WITH CODEX</span>
+              <h2>What do you want to learn?</h2>
+              <p>
+                Codex will design a lesson or scoped lesson plan with an explanation, example, and
+                practice problem.
+              </p>
+              <div
+                class="lesson-modal-error"
+                id="lesson-modal-error"
+                role="alert"
+                aria-live="assertive"
+              ></div>
+              <form id="lesson-form">
+                <label for="lesson-goal">Learning goal</label>
+                <textarea
+                  id="lesson-goal"
+                  rows="3"
+                  placeholder="e.g. Help me understand how to factor quadratic equations"
+                  required
+                ></textarea>
+                <div class="lesson-options">
+                  <label
+                    >Level<select id="lesson-level">
+                      <option>Beginner</option>
+                      <option selected>Intermediate</option>
+                      <option>Advanced</option>
+                    </select></label
+                  >
+                </div>
+                <button type="submit" class="generate-lesson">
+                  <span>✦</span> Build my lesson
+                </button>
+              </form>
+              <div class="lesson-generating" id="lesson-generating">
+                <span class="generating-orbit">✦</span><b>Codex is planning your lesson…</b
+                ><small>Building a clear path from concept to practice</small>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <div class="popover color-popover" id="color-popover">
+        <button
+          data-color="#252522"
+          data-adaptive-ink
+          style="--swatch: #252522"
+          class="selected"
+          aria-label="Graphite in light mode, white in dark mode"
+        ></button>
+        <button data-color="#315bdf" style="--swatch: #315bdf" aria-label="Blue"></button>
+        <button data-color="#cf4c38" style="--swatch: #cf4c38" aria-label="Red"></button>
+        <button data-color="#31815a" style="--swatch: #31815a" aria-label="Green"></button>
+      </div>
+      <div class="popover size-popover" id="size-popover">
+        <span>Stroke</span>
+        <input id="size-range" type="range" min="1" max="12" value="4" />
+        <b id="size-value">4</b>
+      </div>
+      <div class="appearance-popover" id="appearance-popover">
+        <div class="appearance-head">
+          <span>APPEARANCE</span><button id="close-appearance">×</button>
+        </div>
+        <label>Theme</label>
+        <div class="theme-options" role="group" aria-label="Color theme">
+          <button data-theme-choice="light"><span>☀</span>Light</button>
+          <button data-theme-choice="dark"><span>◐</span>Dark</button>
+          <button data-theme-choice="system"><span>◒</span>System</button>
+        </div>
+        <div class="font-scale-head">
+          <label for="font-scale">Text size</label><output id="font-scale-value">100%</output>
+        </div>
+        <div class="font-scale-control">
+          <button id="font-smaller" aria-label="Smaller text">A−</button
+          ><input id="font-scale" type="range" min="80" max="140" step="5" value="100" /><button
+            id="font-larger"
+            aria-label="Larger text"
+          >
+            A+
+          </button>
+        </div>
+        <button class="reset-appearance" id="reset-appearance">Reset appearance</button>
+      </div>
+      <div class="toast" id="toast"></div>
+      <section class="sessions-panel" id="sessions-panel" aria-label="Saved projects">
+        <div class="sessions-panel-head">
+          <div>
+            <span>YOUR WORK</span>
+            <h2>Projects</h2>
+          </div>
+          <button id="close-sessions">×</button>
+        </div>
+        <p>Every project, page, and chat is saved automatically on this device.</p>
+        <button class="new-session-row" id="new-session-row">
+          <span>+</span>
+          <div><b>New project</b><small>Start with a fresh chat and page</small></div>
+        </button>
+        <div class="sessions-list" id="sessions-list"></div>
+      </section>
+      <div class="panel-scrim" id="panel-scrim"></div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

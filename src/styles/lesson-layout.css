@@ -1,0 +1,263 @@
+/* Keep the active lesson, sketch, and chat in one persisted three-pane workspace. */
+.workspace.lesson-integrated {
+  display: grid;
+  grid-template-columns:
+    60px
+    minmax(220px, var(--lesson-layout-pane-1, 36fr))
+    8px
+    minmax(220px, var(--lesson-layout-pane-2, 40fr))
+    8px
+    minmax(220px, var(--lesson-layout-pane-3, 24fr));
+  grid-template-rows: max-content;
+  align-content: stretch;
+  align-items: stretch;
+  overflow: auto;
+}
+
+.workspace.lesson-integrated > .integrated-toolbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  width: 60px;
+  height: calc(100vh - 72px);
+  min-height: 0;
+  align-self: stretch;
+}
+
+.workspace.lesson-integrated > .lesson-layout-pane {
+  position: relative;
+  min-width: 0;
+}
+
+.workspace.lesson-integrated > #sketch-view {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.workspace.lesson-integrated > #sketch-view > .paper-wrap {
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+}
+
+.workspace.lesson-integrated > #sketch-view .paper {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.workspace.lesson-integrated > #sketch-view #canvas {
+  position: absolute;
+  inset: 0;
+}
+
+.workspace.lesson-integrated > .coach-panel-docked {
+  position: sticky;
+  top: 0;
+  z-index: 24;
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  height: calc(100vh - 72px);
+  min-height: 300px;
+  max-height: none;
+  align-self: start;
+  resize: none;
+  border-radius: 0;
+  box-shadow: none;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.workspace.lesson-integrated > .coach-panel-docked .coach-head {
+  padding-top: 38px;
+  cursor: default;
+}
+
+.workspace.lesson-integrated > .coach-panel-docked #close-coach {
+  display: none;
+}
+
+.desktop-shell .workspace.lesson-integrated > .integrated-toolbar,
+.desktop-shell .workspace.lesson-integrated > .coach-panel-docked {
+  height: calc(100vh - 110px);
+}
+
+.lessons-page.integrated-lesson-panel {
+  position: relative;
+  inset: auto;
+  z-index: 24;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  align-self: stretch;
+  background: #fffefa;
+  border: 1px solid #d8d4ca;
+  border-width: 0 1px;
+}
+
+.lesson-layout-divider {
+  display: none;
+  position: relative;
+  z-index: 29;
+  width: 8px;
+  cursor: col-resize;
+  touch-action: none;
+  background: linear-gradient(to right, transparent 3px, #d8d4ca 3px, #d8d4ca 5px, transparent 5px);
+}
+
+.workspace.lesson-integrated > .lesson-layout-divider {
+  display: block;
+}
+
+.lesson-layout-divider::after {
+  content: "";
+  position: sticky;
+  display: block;
+  left: 2px;
+  top: calc(50vh - 28px);
+  width: 4px;
+  height: 56px;
+  border-radius: 3px;
+  background: #8f8b81;
+}
+
+.lesson-layout-divider:hover,
+.lesson-layout-divider:focus,
+.lesson-layout-divider.dragging {
+  outline: 0;
+  background: #e55f36;
+}
+
+.lesson-layout-tab {
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  z-index: 32;
+  width: 70px;
+  min-width: 70px;
+  height: 22px;
+  padding: 0;
+  transform: translateX(-50%);
+  border: 1px solid #c9c5bb;
+  border-radius: 0 0 7px 7px;
+  background-color: rgba(235, 232, 224, 0.96);
+  background-image: radial-gradient(circle, #858177 1px, transparent 1.25px);
+  background-position: center;
+  background-size: 5px 5px;
+  background-repeat: repeat;
+  box-shadow: 0 3px 10px #302c2012;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+
+.workspace.lesson-integrated > .lesson-layout-pane > .lesson-layout-tab {
+  display: block;
+}
+
+.lesson-layout-tab:hover,
+.lesson-layout-tab:focus,
+.lesson-layout-tab.dragging {
+  outline: 0;
+  border-color: #e55f36;
+  background-image: radial-gradient(circle, #e55f36 1px, transparent 1.25px);
+}
+
+.lesson-layout-tab.dragging {
+  cursor: grabbing;
+}
+
+.lesson-layout-tab[data-pane="coach"] {
+  cursor: default;
+}
+
+.workspace.lesson-integrated.reordering-panes > .lesson-layout-pane {
+  transition: filter 0.12s ease;
+}
+
+.workspace.lesson-integrated.reordering-panes
+  > .lesson-layout-pane:not(:has(.lesson-layout-tab.dragging)) {
+  filter: saturate(0.72) opacity(0.78);
+}
+
+.lessons-page.integrated-lesson-panel > .lessons-sidebar,
+.lessons-page.integrated-lesson-panel > .lessons-main {
+  display: none;
+}
+
+.lessons-page.integrated-lesson-panel .lesson-detail {
+  position: relative;
+  inset: auto;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+  z-index: 26;
+  background: #fffefa;
+}
+
+.lessons-page.integrated-lesson-panel .lesson-workspace {
+  display: block;
+  min-height: 0;
+}
+
+.lessons-page.integrated-lesson-panel .lesson-reading-pane {
+  background: transparent;
+}
+
+.lessons-page.integrated-lesson-panel .lesson-detail article {
+  min-height: 0;
+  padding-top: 64px;
+}
+
+@media (max-width: 760px) {
+  .workspace.lesson-integrated {
+    display: block;
+    padding-left: 60px;
+  }
+
+  .workspace.lesson-integrated > .integrated-toolbar {
+    position: fixed;
+    top: 72px;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: auto;
+  }
+
+  .desktop-shell .workspace.lesson-integrated > .integrated-toolbar {
+    top: 110px;
+  }
+
+  .workspace.lesson-integrated > .lesson-layout-divider,
+  .workspace.lesson-integrated > .lesson-layout-pane > .lesson-layout-tab {
+    display: none;
+  }
+
+  .workspace.lesson-integrated > #sketch-view {
+    height: auto;
+  }
+
+  .workspace.lesson-integrated > .coach-panel-docked {
+    position: relative;
+    top: auto;
+    height: auto;
+    min-height: 520px;
+    max-height: none;
+    border-width: 1px 0 0;
+  }
+
+  .workspace.lesson-integrated > .coach-panel-docked .coach-head {
+    padding-top: 18px;
+  }
+}

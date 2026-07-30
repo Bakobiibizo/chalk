@@ -1,0 +1,112 @@
+.desktop-titlebar {
+  display: none;
+}
+.desktop-shell .desktop-titlebar {
+  height: 38px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  background: #dedbd2;
+  border-bottom: 1px solid #c9c5bb;
+  color: #4f4e48;
+  user-select: none;
+  position: relative;
+  z-index: 1000;
+}
+.desktop-shell #app {
+  height: calc(100% - 38px);
+}
+.desktop-titlebar-drag {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 13px;
+  cursor: grab;
+  -webkit-app-region: drag;
+}
+.desktop-titlebar-drag:active {
+  cursor: grabbing;
+}
+.desktop-titlebar-mark {
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  border-radius: 6px;
+  background: #292923;
+  position: relative;
+}
+.desktop-titlebar-mark span {
+  position: absolute;
+  bottom: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: #fffefa;
+  transform: rotate(20deg);
+}
+.desktop-titlebar-mark span:nth-child(1) {
+  left: 5px;
+  height: 5px;
+}
+.desktop-titlebar-mark span:nth-child(2) {
+  left: 9px;
+  height: 8px;
+}
+.desktop-titlebar-mark span:nth-child(3) {
+  left: 13px;
+  height: 11px;
+}
+.desktop-titlebar-name {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+}
+.desktop-window-controls {
+  display: flex;
+  -webkit-app-region: no-drag;
+}
+.desktop-window-button {
+  width: 46px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #68675f;
+  cursor: default;
+  transition:
+    background 0.12s,
+    color 0.12s;
+  -webkit-app-region: no-drag;
+}
+.desktop-window-button svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 1.35;
+}
+.desktop-window-button:hover {
+  background: #dcd8ce;
+  color: #24241f;
+}
+.desktop-window-button.close:hover {
+  background: #d84a3d;
+  color: white;
+}
+.desktop-window-button .restore-icon {
+  display: none;
+}
+.desktop-maximized .desktop-window-button .maximize-icon {
+  display: none;
+}
+.desktop-maximized .desktop-window-button .restore-icon {
+  display: block;
+}
+.desktop-shell:has(#app.focus-mode) .desktop-titlebar {
+  display: none;
+}
+.desktop-shell:has(#app.focus-mode) #app {
+  height: 100%;
+}

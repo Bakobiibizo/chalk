@@ -1,0 +1,393 @@
+.lessons-sidebar {
+  width: 215px;
+  flex: 0 0 215px;
+  background: #f8f6f0;
+  border-right: 1px solid var(--line);
+  padding: 25px 18px 18px;
+  position: relative;
+}
+
+.lessons-side-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 5px 19px;
+}
+
+.lessons-side-head > span,
+.topic-label,
+.learning-streak > span {
+  color: #98958b;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  letter-spacing: 1.3px;
+}
+
+.lessons-side-head button {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #d8d4ca;
+  background: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.lesson-filter,
+.topic-list button {
+  width: 100%;
+  height: 38px;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 10px;
+  font-size: calc(11px * var(--font-scale));
+  cursor: pointer;
+  text-align: left;
+}
+
+.lesson-filter.active {
+  background: #e8e5dc;
+  font-weight: 500;
+}
+
+.lesson-filter b {
+  margin-left: auto;
+  font-size: calc(9px * var(--font-scale));
+  background: #d9d5ca;
+  min-width: 19px;
+  height: 19px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+}
+
+.filter-icon {
+  font-size: calc(15px * var(--font-scale));
+  color: #77746b;
+}
+
+.topic-label {
+  margin: 25px 10px 8px;
+}
+
+.topic-list button::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: var(--topic-color, #d77a54);
+  border-radius: 2px;
+}
+
+.topic-list button b {
+  margin-left: auto;
+  font-size: calc(9px * var(--font-scale));
+  font-weight: 400;
+  color: #99968c;
+}
+
+.learning-streak {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 20px;
+  padding: 14px;
+  border: 1px solid #dedbd2;
+  border-radius: 10px;
+  background: #fffefa;
+}
+
+.learning-streak > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.learning-streak b {
+  font-family: Newsreader, Georgia, serif;
+  font-size: calc(29px * var(--font-scale));
+  font-weight: 500;
+}
+
+.learning-streak small {
+  color: #858279;
+  font-size: calc(8px * var(--font-scale));
+  line-height: 1.3;
+}
+
+.lessons-main {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  padding: 38px 5vw 60px;
+}
+
+.lessons-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  max-width: 1000px;
+  margin: 0 auto 25px;
+}
+
+.lessons-header h1 {
+  font:
+    italic 500 calc(38px * var(--font-scale))/1 Newsreader,
+    Georgia,
+    serif;
+  margin: 5px 0 8px;
+}
+
+.lessons-header p {
+  margin: 0;
+  font-size: calc(11px * var(--font-scale));
+  color: #7b786f;
+}
+
+.lesson-header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.create-lesson {
+  height: 39px;
+  border: 0;
+  background: var(--ink);
+  color: white;
+  border-radius: 8px;
+  padding: 0 16px;
+  font-size: calc(10px * var(--font-scale));
+  cursor: pointer;
+}
+
+.create-lesson span {
+  color: #f2a164;
+  margin-right: 5px;
+}
+
+.lesson-progress-card {
+  max-width: 1000px;
+  margin: 0 auto 31px;
+  display: grid;
+  grid-template-columns: 155px 1fr auto;
+  align-items: center;
+  gap: 23px;
+  padding: 17px 20px;
+  background: #f8f6f0;
+  border: 1px solid #dedbd1;
+  border-radius: 10px;
+}
+
+.progress-copy span {
+  display: block;
+  color: #96938a;
+  font-size: calc(8px * var(--font-scale));
+  letter-spacing: 1.2px;
+}
+
+.progress-copy b {
+  display: block;
+  font-size: calc(11px * var(--font-scale));
+  margin-top: 5px;
+}
+
+.progress-track {
+  height: 5px;
+  background: #dedbd2;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-track i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width 0.3s;
+}
+
+.progress-days {
+  display: flex;
+  gap: 7px;
+}
+
+.progress-days span {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d8d4ca;
+  border-radius: 50%;
+  font-size: calc(7px * var(--font-scale));
+  color: #918e84;
+}
+
+.progress-days span.done {
+  background: #3d6d50;
+  border-color: #3d6d50;
+  color: white;
+}
+
+.lesson-section-head {
+  max-width: 1000px;
+  margin: 0 auto 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-section-head h2 {
+  font:
+    500 calc(18px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+  margin: 0;
+}
+
+.lesson-section-head span {
+  color: #959289;
+  font-size: calc(9px * var(--font-scale));
+}
+
+.lesson-grid {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.lesson-card {
+  min-height: 202px;
+  display: flex;
+  flex-direction: column;
+  padding: 17px;
+  background: #fffefa;
+  border: 1px solid #ddd9cf;
+  border-radius: 10px;
+  cursor: pointer;
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.lesson-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px #35302512;
+}
+
+.lesson-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-topic {
+  padding: 4px 7px;
+  background: var(--topic-bg, #f5e7df);
+  color: var(--topic-text, #a05a3e);
+  border-radius: 4px;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.lesson-card-top button {
+  border: 0;
+  background: transparent;
+  color: #aaa69c;
+  cursor: pointer;
+  font-size: calc(16px * var(--font-scale));
+}
+
+.lesson-card h3 {
+  font:
+    500 calc(18px * var(--font-scale))/1.2 Newsreader,
+    Georgia,
+    serif;
+  margin: 17px 0 7px;
+}
+
+.lesson-card p {
+  color: #7f7c73;
+  font-size: calc(9px * var(--font-scale));
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.lesson-card-footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #98958c;
+  font-size: calc(8px * var(--font-scale));
+}
+
+.mini-progress {
+  width: 55px;
+  height: 3px;
+  background: #e4e1d8;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.mini-progress i {
+  display: block;
+  height: 100%;
+  background: var(--orange);
+}
+
+.lesson-empty {
+  max-width: 1000px;
+  margin: 45px auto;
+  text-align: center;
+  display: none;
+}
+
+.lesson-empty.show {
+  display: block;
+}
+
+.lesson-empty > div {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  margin: auto;
+  background: var(--ink);
+  color: #ee995e;
+  border-radius: 12px;
+}
+
+.lesson-empty h3 {
+  font:
+    italic 500 calc(23px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+  margin: 14px 0 5px;
+}
+
+.lesson-empty p {
+  font-size: calc(10px * var(--font-scale));
+  color: #858279;
+}
+
+.lesson-empty button {
+  border: 1px solid #d2cec4;
+  background: #fff;
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: calc(9px * var(--font-scale));
+  cursor: pointer;
+}

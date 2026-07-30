@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "noEmit": true,
+    "strict": true,
+    "target": "ES2022",
+    "types": ["node", "vite/client"]
+  },
+  "include": [
+    "src/**/*.js",
+    "src/**/*.d.ts",
+    "electron/**/*.js",
+    "electron/**/*.cjs",
+    "vite.config.js"
+  ]
+}

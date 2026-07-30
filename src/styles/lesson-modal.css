@@ -1,0 +1,311 @@
+.lesson-modal {
+  display: none;
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  background: #2d2b2599;
+  backdrop-filter: blur(3px);
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  overflow: auto;
+}
+
+#lesson-modal.open {
+  display: flex;
+  position: fixed;
+  z-index: 240;
+  pointer-events: auto;
+}
+
+.lesson-modal-card {
+  width: 440px;
+  max-width: calc(100vw - 30px);
+  background: #fbfaf6;
+  border-radius: 15px;
+  padding: 29px;
+  position: relative;
+  box-shadow: 0 25px 70px #19171155;
+}
+
+#lesson-modal .lesson-modal-card {
+  width: min(620px, calc(100vw - 36px));
+  max-height: min(760px, calc(100vh - 36px));
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+
+.modal-close {
+  position: absolute;
+  right: 16px;
+  top: 13px;
+  border: 0;
+  background: transparent;
+  color: #8d8a80;
+  font-size: calc(24px * var(--font-scale));
+  cursor: pointer;
+}
+
+.modal-spark {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  background: var(--ink);
+  color: #f09b60;
+  border-radius: 11px;
+  margin-bottom: 16px;
+}
+
+.lesson-modal-card h2 {
+  font:
+    italic 500 calc(28px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+  margin: 4px 0 7px;
+}
+
+.lesson-modal-card > p {
+  color: #7c796f;
+  font-size: calc(10px * var(--font-scale));
+  line-height: 1.55;
+  margin: 0 0 20px;
+}
+
+.lesson-picker {
+  margin: 0 0 18px;
+  max-height: min(290px, 36vh);
+  overflow-y: auto;
+  border: 1px solid #e0ddd4;
+  border-radius: 10px;
+  background: #f7f5ef;
+  padding: 8px;
+}
+
+#lesson-modal .lesson-picker {
+  max-height: min(260px, 30vh);
+}
+
+.lesson-picker-head {
+  padding: 7px 8px 9px;
+}
+
+.lesson-picker-head span {
+  display: block;
+  color: #918e84;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.lesson-picker-head small,
+.lesson-picker-empty {
+  color: #858279;
+  font-size: calc(9px * var(--font-scale));
+}
+
+.lesson-picker button {
+  width: 100%;
+  display: block;
+  margin-top: 5px;
+  padding: 10px;
+  border: 1px solid #ddd9cf;
+  background: #fffefa;
+  color: var(--ink);
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lesson-picker button:hover,
+.lesson-picker button:focus {
+  border-color: var(--orange);
+  outline: 0;
+  box-shadow: 0 0 0 2px #e55f3626;
+}
+
+.lesson-picker button b {
+  display: block;
+  font-size: calc(11px * var(--font-scale));
+}
+
+.lesson-picker button small {
+  display: block;
+  margin-top: 3px;
+  color: #918e84;
+  font-size: calc(8px * var(--font-scale));
+}
+
+.lesson-picker-row {
+  display: grid;
+  grid-template-columns: 1fr 34px;
+  gap: 6px;
+  align-items: stretch;
+  margin-top: 5px;
+}
+
+.lesson-picker-row > button[data-pick-lesson] {
+  margin-top: 0;
+}
+
+.lesson-picker-delete {
+  border: 1px solid #ddd9cf;
+  background: #fffefa;
+  color: #9a4a3e;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: calc(18px * var(--font-scale));
+}
+
+.lesson-picker-delete:hover {
+  border-color: #c85d4d;
+  background: #fff1ed;
+}
+
+.lesson-modal-error {
+  display: none;
+  margin: 12px 0 14px;
+  padding: 11px 12px;
+  border: 1px solid #d88474;
+  background: #fff1ed;
+  color: #8f3326;
+  border-radius: 9px;
+  font-size: calc(10px * var(--font-scale));
+  line-height: 1.45;
+}
+
+.lesson-modal-error.show {
+  display: block;
+}
+
+.lesson-modal-error strong {
+  display: block;
+  font-size: calc(11px * var(--font-scale));
+}
+
+.lesson-modal-error small {
+  display: block;
+  margin-top: 4px;
+  color: #9b4a3d;
+}
+
+.lesson-modal-card label {
+  display: block;
+  color: #55534c;
+  font-size: calc(9px * var(--font-scale));
+  font-weight: 600;
+}
+
+.lesson-modal-card textarea,
+.lesson-modal-card select {
+  width: 100%;
+  border: 1px solid #d7d3c9;
+  background: white;
+  border-radius: 8px;
+  outline: 0;
+  padding: 10px;
+  font-size: calc(11px * var(--font-scale));
+  margin-top: 6px;
+  resize: none;
+}
+
+.lesson-modal-card textarea:focus,
+.lesson-modal-card select:focus {
+  border-color: #969289;
+}
+
+.lesson-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.lesson-modal-card select {
+  height: 39px;
+}
+
+#lesson-modal #lesson-goal {
+  max-height: 28vh;
+}
+
+.generate-lesson {
+  width: 100%;
+  height: 42px;
+  border: 0;
+  background: var(--ink);
+  color: white;
+  border-radius: 8px;
+  margin-top: 17px;
+  font-size: calc(10px * var(--font-scale));
+  cursor: pointer;
+}
+
+.generate-lesson span {
+  color: #f0a064;
+  margin-right: 5px;
+}
+
+.lesson-generating {
+  display: none;
+  height: 245px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.lesson-generating.show {
+  display: flex;
+}
+
+.lesson-generating.show + * {
+  display: none;
+}
+
+.generating-orbit {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #d1cdc3;
+  border-radius: 50%;
+  color: var(--orange);
+  margin-bottom: 15px;
+  animation: orbit 1.3s ease-in-out infinite;
+}
+
+@keyframes orbit {
+  50% {
+    transform: rotate(180deg) scale(1.08);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.lesson-generating b {
+  font:
+    italic 500 calc(18px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+}
+
+.lesson-generating small {
+  color: #918e85;
+  font-size: calc(9px * var(--font-scale));
+  margin-top: 6px;
+}
+
+@media (max-width: 560px) {
+  .lesson-modal {
+    padding: 8px;
+    align-items: stretch;
+  }
+
+  #lesson-modal .lesson-modal-card {
+    width: 100%;
+    max-height: calc(100vh - 16px);
+    padding: 20px;
+  }
+}

@@ -1,0 +1,91 @@
+@media (max-width: 800px) {
+  .topbar {
+    grid-template-columns: auto 1fr auto;
+    padding: 0 12px;
+  }
+  .brand-divider,
+  .document-title,
+  .save-state,
+  .divider,
+  .codex-status span {
+    display: none;
+  }
+  .app-nav {
+    justify-self: center;
+  }
+  .codex-status {
+    width: 30px;
+    padding: 0;
+    justify-content: center;
+  }
+  .paper-wrap {
+    padding: 14px 14px 0;
+  }
+  .lessons-sidebar {
+    display: none;
+  }
+  .lessons-main {
+    padding-inline: 22px;
+  }
+  .lesson-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .lesson-progress-card {
+    grid-template-columns: 130px 1fr;
+  }
+  .progress-days {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .brand > span,
+  .document-title {
+    display: none;
+  }
+  .topbar {
+    grid-template-columns: auto 1fr auto;
+  }
+  .app-nav {
+    gap: 13px;
+  }
+  .paper-wrap {
+    padding: 8px 8px 0;
+  }
+  .toolbar {
+    width: 52px;
+    flex-basis: 52px;
+    padding-inline: 6px;
+  }
+  .coach-panel,
+  .lesson-coach-block {
+    top: 79px;
+    left: 7px;
+    right: auto;
+    bottom: auto;
+    width: calc(100vw - 14px);
+    height: calc(100vh - 86px);
+  }
+  .lesson-grid {
+    grid-template-columns: 1fr;
+  }
+  .lessons-header {
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .lessons-header p {
+    display: none;
+  }
+  .create-lesson {
+    padding-inline: 10px;
+  }
+  .lesson-progress-card {
+    display: block;
+  }
+  .progress-track {
+    margin-top: 12px;
+  }
+  .sessions-panel {
+    width: min(355px, 92vw);
+  }
+}

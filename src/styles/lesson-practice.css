@@ -1,0 +1,200 @@
+.lesson-practice-pane {
+  min-width: 0;
+  width: 100%;
+  min-height: calc(100vh - 72px);
+  align-self: stretch;
+  display: flex;
+  position: sticky;
+  top: 0;
+  height: calc(100vh - 72px);
+  background: #e9e6de;
+  border-right: 1px solid #d7d3c9;
+}
+
+.lesson-practice-main {
+  min-width: 0;
+  flex: 1;
+  padding: 14px 27px 0;
+  display: flex;
+  flex-direction: column;
+  background: #eae7df;
+}
+
+.lesson-practice-head {
+  height: 38px;
+  flex: 0 0 38px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lesson-practice-head span {
+  display: block;
+  color: #959188;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.lesson-practice-head h2 {
+  margin: 3px 0 0;
+  font:
+    italic 500 calc(19px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+}
+
+.lesson-practice-tools {
+  width: 60px;
+  flex: 0 0 60px;
+  padding: 15px 10px;
+  display: flex;
+  position: sticky;
+  top: 0;
+  align-self: stretch;
+  flex-direction: column;
+  gap: 13px;
+  background: rgba(247, 245, 239, 0.95);
+  border-right: 1px solid var(--line);
+}
+
+.lesson-practice-tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.lesson-practice-tool-group.lower {
+  margin-top: auto;
+  padding: 0;
+  border: 0;
+}
+
+.lesson-practice-tools button {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #747168;
+  border-radius: 9px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.lesson-practice-tools button:hover {
+  background: #e7e4dc;
+}
+
+.lesson-practice-tools button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lesson-practice-tools button.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: white;
+}
+
+.lesson-practice-paper {
+  flex: 1;
+  min-height: 0;
+  position: relative;
+  overflow: hidden;
+  background: #fffefa;
+  border: 1px solid #ddd9cf;
+  box-shadow: 0 12px 35px #3e392a10;
+}
+
+.lesson-practice-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 2;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.lesson-practice-empty {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: #aaa79d;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.lesson-practice-empty.hidden {
+  opacity: 0;
+}
+
+.lesson-practice-empty span {
+  font:
+    italic 500 calc(18px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+  color: #858279;
+}
+
+.lesson-practice-empty small {
+  margin-top: 5px;
+  font-size: calc(9px * var(--font-scale));
+}
+
+.lesson-practice-status {
+  height: 35px;
+  flex: 0 0 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #918e85;
+  font-size: calc(9px * var(--font-scale));
+}
+
+.lesson-practice-status span:first-child::before {
+  content: "●";
+  color: #679173;
+  font-size: 6px;
+  margin-right: 5px;
+}
+
+.lessons-page.integrated-lesson-panel .lesson-practice-pane {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .lesson-practice-main {
+    padding-inline: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .lesson-practice-pane {
+    position: relative;
+    top: auto;
+    height: 58vh;
+    min-height: 390px;
+    flex: none;
+    border-right: 0;
+    border-bottom: 1px solid #d7d3c9;
+  }
+
+  .lesson-practice-tools {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+  }
+
+  .lesson-practice-main {
+    padding: 14px 12px 0;
+  }
+}

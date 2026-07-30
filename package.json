@@ -1,0 +1,77 @@
+{
+  "name": "chalk-sketch",
+  "version": "1.0.0",
+  "description": "A pressure-aware drawing canvas with a local Codex learning coach.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "desktopName": "Chalk.desktop",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "format": "prettier --write \"**/*.{js,cjs,css,html,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,cjs,css,html,json,md}\"",
+    "lint": "eslint",
+    "test:regression": "node --test tests/*.test.js",
+    "typecheck": "tsc --project tsconfig.json --pretty false",
+    "validate": "npm run format:check && npm run lint && npm run typecheck && npm run test:regression && npm run build",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "desktop": "npm run build && electron .",
+    "desktop:dir": "npm run build && electron-builder --dir",
+    "desktop:pack": "npm run build && electron-builder"
+  },
+  "devDependencies": {
+    "@types/node": "26.1.1",
+    "@types/ws": "8.18.1",
+    "electron": "^43.1.1",
+    "electron-builder": "^26.15.3",
+    "eslint": "^10.8.0",
+    "jsdom": "^29.1.1",
+    "prettier": "3.9.6",
+    "typescript": "7.0.2",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "katex": "^0.18.0",
+    "ws": "^8.18.3"
+  },
+  "build": {
+    "appId": "app.chalk.desktop",
+    "productName": "Chalk",
+    "asar": true,
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "src/codex-stdio-session-adapter.js",
+      "src/codex-transport-configuration.js",
+      "src/grist-process-adapter.js",
+      "package.json"
+    ],
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Education",
+      "syncDesktopName": true
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "category": "public.app-category.education"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    }
+  }
+}

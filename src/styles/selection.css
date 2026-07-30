@@ -1,0 +1,33 @@
+#canvas.selecting,
+.lesson-practice-canvas.selecting {
+  cursor: default;
+}
+
+.selection-box,
+.lesson-selection-box {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  border: 1px dashed #315bdf;
+  background: #315bdf12;
+  box-shadow: 0 0 0 1px #fff8 inset;
+}
+
+.selection-box.show,
+.lesson-selection-box.show {
+  display: block;
+}
+
+.selection-box::after,
+.lesson-selection-box::after {
+  content: "";
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #315bdf;
+  border: 1px solid white;
+}

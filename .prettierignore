@@ -1,0 +1,6 @@
+.ldgr/
+build/regression-package/
+chalk-user-data/
+dist/
+node_modules/
+release/

@@ -1,0 +1,450 @@
+/* Codex learning coach */
+.coach-panel {
+  position: fixed;
+  right: 22px;
+  top: 90px;
+  width: 360px;
+  height: calc(100vh - 120px);
+  min-width: 280px;
+  min-height: 300px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  z-index: 35;
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  background: #fbfaf6;
+  border: 1px solid #d9d5ca;
+  box-shadow: 0 18px 55px #34302524;
+  border-radius: 14px;
+  opacity: 0;
+  transform: translateX(22px) scale(0.98);
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s ease;
+  overflow: hidden;
+}
+
+.coach-panel.open {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  pointer-events: auto;
+}
+
+.coach-panel.widget-positioned {
+  transition: opacity 0.22s ease;
+}
+
+.coach-head {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 18px;
+  border-bottom: 1px solid #e2dfd6;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+.coach-head.dragging {
+  cursor: grabbing;
+}
+
+.coach-avatar {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--ink);
+  color: #f3a05b;
+}
+
+.coach-head span {
+  display: block;
+  font-size: calc(8px * var(--font-scale));
+  letter-spacing: 1.3px;
+  color: #918e84;
+}
+
+.coach-head h2 {
+  font-family: Newsreader, Georgia, serif;
+  font-size: calc(17px * var(--font-scale));
+  font-style: italic;
+  font-weight: 500;
+  margin: 2px 0 0;
+}
+
+.coach-head button {
+  align-self: start;
+  border: 0;
+  background: transparent;
+  color: #918e84;
+  font-size: calc(23px * var(--font-scale));
+  cursor: pointer;
+}
+
+.shared-page-note {
+  margin: 8px 18px 0 64px;
+  color: #77746b;
+  font-size: calc(9px * var(--font-scale));
+  line-height: 1.4;
+}
+
+.coach-conversation {
+  flex: 1;
+  min-height: 0;
+  padding: 16px 17px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.coach-message {
+  max-width: 88%;
+  font-size: calc(11px * var(--font-scale));
+  line-height: 1.55;
+  padding: 10px 12px;
+  border-radius: 10px;
+  white-space: pre-wrap;
+}
+
+.coach-message.system,
+.coach-message.assistant {
+  align-self: flex-start;
+  background: #ece9e1;
+  border-bottom-left-radius: 3px;
+}
+
+.coach-message.user {
+  align-self: flex-end;
+  background: #292a26;
+  color: #fffefa;
+  border: 1px solid #3d3e38;
+  border-bottom-right-radius: 3px;
+}
+
+.coach-message.thinking::after {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 5px;
+  margin-left: 5px;
+  background: radial-gradient(circle, #827f76 1.5px, transparent 2px) 0 0/6px 5px;
+  animation: thinking 1s linear infinite;
+}
+
+@keyframes thinking {
+  to {
+    background-position: 6px 0;
+  }
+}
+
+.coach-form {
+  border-top: 1px solid #e2dfd6;
+  padding: 12px 14px 14px;
+  background: #f7f5ef;
+}
+
+.coach-form textarea {
+  width: 100%;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: calc(11px * var(--font-scale));
+  line-height: 1.5;
+  padding: 4px;
+}
+
+.coach-suggestions {
+  display: flex;
+  gap: 5px;
+  margin: 6px 0 10px;
+}
+
+.coach-suggestions button {
+  border: 1px solid #d9d5cb;
+  background: #fff;
+  border-radius: 14px;
+  padding: 5px 8px;
+  color: #77746b;
+  font-size: calc(9px * var(--font-scale));
+  cursor: pointer;
+}
+
+.send-page {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 7px;
+  background: var(--ink);
+  color: white;
+  font-size: calc(10px * var(--font-scale));
+  cursor: pointer;
+}
+
+.send-page:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+#app.focus-mode .math-panel,
+#app.focus-mode .coach-panel {
+  display: none;
+}
+
+.lesson-coach-block {
+  position: fixed;
+  right: 22px;
+  top: 94px;
+  z-index: 35;
+  width: 360px;
+  height: min(540px, calc(100vh - 118px));
+  min-width: 280px;
+  min-height: 300px;
+  max-width: calc(100vw - 16px);
+  max-height: calc(100vh - 16px);
+  display: flex;
+  flex-direction: column;
+  resize: both;
+  overflow: hidden;
+  background: #fbfaf6;
+  border: 1px solid #d9d5ca;
+  box-shadow: 0 18px 55px #34302524;
+  border-radius: 14px;
+}
+
+.lesson-coach-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 18px;
+  border-bottom: 1px solid #e2dfd6;
+  cursor: move;
+  touch-action: none;
+  user-select: none;
+}
+
+.lesson-coach-head.dragging {
+  cursor: grabbing;
+}
+
+.lesson-coach-head h2 {
+  margin: 3px 0 0;
+  font:
+    italic 500 calc(17px * var(--font-scale)) Newsreader,
+    Georgia,
+    serif;
+}
+
+.lesson-coach-live {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  color: #89867d;
+  font-size: calc(8px * var(--font-scale));
+}
+
+.lesson-coach-live i {
+  width: 6px;
+  height: 6px;
+  margin-right: 5px;
+  border-radius: 50%;
+  background: #669172;
+}
+
+.lesson-coach-conversation {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 16px 17px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  background: #f2efe7;
+}
+
+.lesson-coach-conversation .coach-message {
+  font-size: calc(10px * var(--font-scale));
+}
+
+.lesson-coach-welcome {
+  padding: 15px 10px;
+  text-align: center;
+  color: #8b887f;
+  font-size: calc(9px * var(--font-scale));
+  line-height: 1.5;
+}
+
+.lesson-coach-form {
+  flex: 0 0 auto;
+  position: relative;
+  border: 0;
+  border-top: 1px solid #d6d2c8;
+  background: white;
+  padding: 11px 57px 11px 13px;
+}
+
+.lesson-coach-form textarea {
+  width: 100%;
+  min-height: 39px;
+  resize: none;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font-size: calc(10px * var(--font-scale));
+  line-height: 1.45;
+}
+
+.lesson-coach-form > button {
+  position: absolute;
+  right: 11px;
+  bottom: 11px;
+  width: 38px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: var(--ink);
+  color: white;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.lesson-coach-form > button span {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+.lesson-coach-form > button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.lesson-coach-form > button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+/* Unified chat, import/export, and lesson control refinements */
+.coach-window-actions {
+  display: flex;
+  align-self: start;
+  gap: 2px;
+}
+
+.coach-window-actions button {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #918e84;
+  border-radius: 6px;
+  font-size: calc(15px * var(--font-scale));
+  cursor: pointer;
+}
+
+.coach-window-actions button:hover {
+  background: #ece9e1;
+  color: var(--ink);
+}
+
+.coach-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}
+
+.coach-history {
+  width: 0;
+  flex: 0 0 0;
+  overflow: hidden;
+  border-right: 1px solid #e2dfd6;
+  background: #f2efe7;
+  transition:
+    flex-basis 0.2s ease,
+    width 0.2s ease;
+}
+
+.coach-panel.history-open .coach-history {
+  width: 138px;
+  flex-basis: 138px;
+  padding: 12px 8px;
+  overflow-y: auto;
+}
+
+.coach-history > span {
+  display: block;
+  margin: 0 4px 8px;
+  color: #918e84;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+.coach-thread {
+  width: 100%;
+  display: block;
+  border: 0;
+  background: transparent;
+  border-radius: 8px;
+  padding: 8px;
+  color: #706d64;
+  text-align: left;
+  cursor: pointer;
+}
+
+.coach-thread.active,
+.coach-thread:hover {
+  background: #e3e0d7;
+  color: var(--ink);
+}
+
+.coach-thread b {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: calc(9px * var(--font-scale));
+}
+
+.coach-thread small {
+  display: block;
+  margin-top: 3px;
+  color: #96938a;
+  font-size: calc(7px * var(--font-scale));
+}
+
+.coach-body .coach-conversation {
+  flex: 1;
+}
+
+/* Keep the single Codex-button chat usable above lesson overlays. */
+.coach-panel {
+  z-index: 70;
+  pointer-events: none;
+}
+
+.coach-panel.open {
+  pointer-events: auto;
+}
+
+.coach-form textarea,
+#coach-prompt {
+  pointer-events: auto;
+  user-select: text;
+  cursor: text;
+}

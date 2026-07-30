@@ -1,0 +1,343 @@
+.sketch-view {
+  position: relative;
+}
+
+.toolbar {
+  width: 60px;
+  flex: 0 0 60px;
+  border-right: 1px solid var(--line);
+  background: rgba(247, 245, 239, 0.95);
+  padding: 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  position: relative;
+  z-index: 12;
+}
+
+.tool-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tool-group.lower {
+  margin-top: auto;
+  border: 0;
+  padding: 0;
+}
+
+.tool {
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: transparent;
+  border-radius: 9px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.tool:hover {
+  background: #e7e4dc;
+}
+
+.tool.active {
+  background: var(--ink);
+  color: #fff;
+}
+
+.tool:disabled {
+  cursor: wait;
+  opacity: 0.55;
+}
+
+.color-dot {
+  width: 18px;
+  height: 18px;
+  background: #252522;
+  display: block;
+  margin: 1px;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px #fff,
+    0 0 0 3px #b8b6ae;
+}
+
+.size-tool span {
+  width: 6px;
+  height: 6px;
+  display: block;
+  margin: 7px;
+  background: currentColor;
+  border-radius: 50%;
+}
+
+.paper-wrap {
+  flex: 1;
+  min-width: 0;
+  padding: 14px 34px 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #eae7df;
+}
+
+.page-tabs {
+  width: 100%;
+  max-width: 1180px;
+  height: 38px;
+  flex: 0 0 38px;
+  margin: 0 auto;
+  display: flex;
+  align-items: end;
+  gap: 3px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.page-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.page-tab {
+  height: 31px;
+  flex: 0 0 auto;
+  max-width: 180px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d4d0c6;
+  border-bottom: 0;
+  background: #dfdcd4;
+  color: #77746b;
+  border-radius: 8px 8px 0 0;
+  padding: 0 6px 0 11px;
+  font-size: calc(9px * var(--font-scale));
+  cursor: pointer;
+}
+
+.page-tab.active {
+  height: 34px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.page-tab-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.page-tab-close {
+  width: 21px;
+  height: 21px;
+  margin-left: 6px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #a29f95;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.page-tab-close:hover {
+  background: #d2cec4;
+  color: #6f6c64;
+}
+
+.add-page-tab {
+  width: 29px;
+  height: 29px;
+  flex: 0 0 29px;
+  margin: 0 0 2px 2px;
+  border: 1px solid #d1cdc3;
+  background: #f5f2eb;
+  color: #6f6c64;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: calc(17px * var(--font-scale));
+  line-height: 1;
+}
+
+.paper {
+  width: 100%;
+  height: auto;
+  flex: 1;
+  min-height: 0;
+  max-width: 1180px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  box-shadow:
+    0 1px 3px #4d4a3c18,
+    0 15px 40px #4d4a3c0c;
+  border: 1px solid #e2dfd6;
+}
+
+.paper.grid {
+  background-color: var(--paper);
+  background-image: radial-gradient(#d9d6cd 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  touch-action: none;
+  cursor: crosshair;
+  position: relative;
+  z-index: 2;
+}
+
+#canvas.eraser {
+  cursor: cell;
+}
+
+.empty-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  pointer-events: none;
+  color: #9b998f;
+  transition: opacity 0.25s;
+}
+
+.empty-state.hidden {
+  opacity: 0;
+}
+
+.empty-scribble {
+  width: 56px;
+  height: 35px;
+  margin: 0 auto 12px;
+  position: relative;
+}
+
+.empty-scribble span {
+  position: absolute;
+  height: 2px;
+  background: #c8c4ba;
+  border-radius: 3px;
+  transform-origin: left;
+}
+
+.empty-scribble span:first-child {
+  width: 51px;
+  transform: rotate(-12deg);
+  top: 18px;
+  left: 3px;
+}
+
+.empty-scribble span:last-child {
+  width: 39px;
+  transform: rotate(8deg);
+  top: 17px;
+  left: 8px;
+}
+
+.empty-state p {
+  margin: 0 0 5px;
+  font-family: Newsreader, Georgia, serif;
+  font-style: italic;
+  font-size: calc(19px * var(--font-scale));
+  color: #77756d;
+}
+
+.empty-state small {
+  font-size: calc(11px * var(--font-scale));
+}
+
+.canvas-status {
+  width: 100%;
+  height: 35px;
+  flex: 0 0 35px;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #858279;
+  font-size: calc(10px * var(--font-scale));
+}
+
+.canvas-status i {
+  width: 6px;
+  height: 6px;
+  border: 1px solid #96948a;
+  display: inline-block;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.canvas-actions {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.canvas-actions button {
+  border: 0;
+  background: transparent;
+  color: #5f5d55;
+  font-size: calc(10px * var(--font-scale));
+  cursor: pointer;
+  height: 100%;
+  padding: 0 4px;
+}
+
+.canvas-actions button span {
+  color: var(--orange);
+  margin-right: 4px;
+}
+
+.canvas-actions button svg {
+  width: 11px;
+  height: 11px;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+.canvas-actions kbd {
+  margin-left: 3px;
+  height: 15px;
+  min-width: 15px;
+}
+
+.zoom {
+  border-left: 1px solid #d4d1c8;
+  padding-left: 14px;
+}
+
+/* Focus mode keeps the standard drawing toolbar beside the expanded canvas. */
+#app.focus-mode .paper-wrap {
+  padding: 0;
+  background: var(--paper);
+}
+
+#app.focus-mode .page-tabs {
+  display: none;
+}
+
+#app.focus-mode .paper {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+#app.focus-mode .canvas-status {
+  display: none;
+}
+
+#sketch-view.active {
+  display: flex !important;
+}

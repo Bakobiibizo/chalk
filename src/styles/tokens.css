@@ -1,0 +1,13 @@
+:root {
+  --ink: #24241f;
+  --muted: #77766d;
+  --line: #dedbd1;
+  --paper: #fffefa;
+  --shell: #f2efe7;
+  --orange: #e55f36;
+  --font-scale: 1;
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--shell);
+  font-synthesis: none;
+}

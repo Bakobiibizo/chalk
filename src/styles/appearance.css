@@ -1,0 +1,129 @@
+.appearance-button {
+  width: 34px;
+  height: 30px;
+  border: 1px solid #d9d6cd;
+  background: transparent;
+  border-radius: 15px;
+  color: #77756d;
+  cursor: pointer;
+}
+.appearance-button:hover {
+  background: #e9e6dd;
+}
+.appearance-button span {
+  font-family: Georgia, serif;
+  font-weight: 600;
+  font-size: calc(10px * var(--font-scale));
+}
+/* Appearance */
+.appearance-popover {
+  position: fixed;
+  z-index: 75;
+  right: 158px;
+  top: 61px;
+  width: 270px;
+  display: none;
+  padding: 16px;
+  background: #fffefa;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: 0 12px 35px #302c201f;
+}
+.appearance-popover.show {
+  display: block;
+}
+.appearance-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+.appearance-head > span {
+  color: #96938a;
+  font-size: calc(8px * var(--font-scale));
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+.appearance-head button {
+  border: 0;
+  background: transparent;
+  color: #918e85;
+  font-size: calc(20px * var(--font-scale));
+  cursor: pointer;
+}
+.appearance-popover > label,
+.font-scale-head label {
+  display: block;
+  font-size: calc(9px * var(--font-scale));
+  font-weight: 600;
+  color: #66645c;
+}
+.theme-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin: 8px 0 18px;
+}
+.theme-options button {
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border: 1px solid #d9d5cb;
+  background: #f7f5ef;
+  border-radius: 7px;
+  color: #77746b;
+  font-size: calc(8px * var(--font-scale));
+  cursor: pointer;
+}
+.theme-options button span {
+  font-size: calc(14px * var(--font-scale));
+}
+.theme-options button.active {
+  border-color: var(--orange);
+  box-shadow: 0 0 0 1px var(--orange);
+  color: var(--ink);
+}
+.font-scale-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.font-scale-head output {
+  color: #88857c;
+  font-size: calc(9px * var(--font-scale));
+}
+.font-scale-control {
+  display: grid;
+  grid-template-columns: 34px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 9px;
+}
+.font-scale-control button {
+  height: 31px;
+  border: 1px solid #d9d5cb;
+  background: #f7f5ef;
+  border-radius: 6px;
+  font-family: Georgia, serif;
+  font-size: calc(10px * var(--font-scale));
+  cursor: pointer;
+}
+.font-scale-control input {
+  min-width: 0;
+  width: 100%;
+  accent-color: var(--orange);
+}
+.reset-appearance {
+  width: 100%;
+  margin-top: 15px;
+  padding-top: 12px;
+  border: 0;
+  border-top: 1px solid #e1ded5;
+  background: transparent;
+  color: #959188;
+  font-size: calc(8px * var(--font-scale));
+  cursor: pointer;
+}

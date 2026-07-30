@@ -1,0 +1,13 @@
+node_modules/
+dist/
+release/
+build/
+chalk-user-data/
+.ldgr/
+.pi/
+.env
+.env.local
+*.log
+coverage/
+.DS_Store
+Thumbs.db
